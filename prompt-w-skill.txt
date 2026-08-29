@@ -1,3 +1,0 @@
-@<file_name>.txt 
-
-Run /script-extr using the referenced input file above as the input argument
