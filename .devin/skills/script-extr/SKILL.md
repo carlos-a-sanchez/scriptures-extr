@@ -119,6 +119,6 @@ allowed-tools:
 
   Bm0=NTV:42:15:11
 
-4. Write the formatted scripture references to a file named `[notes_file_name_without_extension]-scriptures.txt` in the same directory as the input file.
+4. Write the formatted scripture references to a file named `[notes_file_name_without_extension]-scriptures.txt` in the BibleShowFiles directory.
 
 
