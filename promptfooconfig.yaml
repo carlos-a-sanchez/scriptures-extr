@@ -1,0 +1,58 @@
+# 
+# 
+
+description: "My eval"
+
+prompts: 
+  - "@extractor-prompt.md --param notes_file={{scrpts_file}}"
+
+defaultTest:
+  options:
+    provider: 'Devin SWE-1.7'
+
+providers:
+  #
+  # Devin CLI provider
+  - id: 'exec: node ./devin.js'
+    label: 'Devin SWE-1.7'
+    config:
+      model: 'SWE-1.7'
+
+tests:     
+  - description: "Basic extraction"
+    vars:
+      scrpts_file: "./Sermons/MATEO_13-t1.txt"
+    assert:
+      - type: contains
+        value: 'NVI:40:13:24'
+        metric: BasicExtraction     
+
+  - description: "Extracting ranges of scriptures and defaut NVI. "
+    vars:
+      scrpts_file: "./Sermons/MATEO_13-t2.txt"
+    assert:
+      - type: contains
+        value: ':40:13:24'       
+      - type: contains
+        value: ':40:13:25'     
+        metric: RangeExtraction            
+      - type: contains
+        value: ':40:13:28'       
+      - type: contains
+        value: 'NVI'       
+        metric: DefaultVersionNVI
+    
+  - description: "Multiple versions"
+    vars:
+      scrpts_file: "./Sermons/MARCOS-4.txt"
+    assert:
+      - type: assert-set 
+        assert:
+          - type: contains
+            value: 'NVI:41:4:29'
+          - type: contains
+            value: 'DHH:23:55:10'   
+        metric: MultipleVersions   
+      - type: regex 
+        value: 'Bm\d+=[A-Z]{3}:\d+:\d+:\d+'
+        metric: ExpectedFormat
