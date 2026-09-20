@@ -1,3 +1,9 @@
+## iteration 1
+
+### Prompt
+
+```text
+
 # Scripture Extractor
 
 <Role>
@@ -28,28 +34,13 @@ Read the sermon notes file (notes_file parameter), extract the scripture referen
 
   b) In case the reference to a scripture is a range, like "Lucas 15:11-13", include multiple lines in the output file, one for each verse in the range. Include the start and end verses, "Lucas 15:11-13" most produce a row for "Lucas 15:13".
 
-  c) When a line starts with or contains standalone verse numbers without a book and chapter, inherit the book and chapter from the most recent explicit reference. For example:
-  
-  ```text
- Is. 55.9 Así como los cielos son más altos. 10Es como la lluvia y la nieve que caen del cielo.  DHH
-  ```
-Should produce:
+  c) In case the reference to a scripture is a double range, like "Lucas 15:11-13, 15-16", include also the range after the ",". The reference "Lucas 15:11-13, 15-16" should be treated as 2 ranges: "Lucas 15:11-13" and "Lucas 15:15-16".
 
-```
-DHH:23:55:9
-DHH:23:55:10
-```
+  d) If the reference to a scripture is not found in the Bible, skip it and continue with the next reference.
 
-`DHH:23:55:10` is produced because after the period, the next sentece started with "10" which is a verse number, then it inherits the book and chapter and version from the previous reference.
+  e) If the reference appears more than once in the document, include it multiple times in the output.
 
-
-  d) In case the reference to a scripture is a double range, like "Lucas 15:11-13, 15-16", include also the range after the ",". The reference "Lucas 15:11-13, 15-16" should be treated as 2 ranges: "Lucas 15:11-13" and "Lucas 15:15-16".
-
-  e) If the reference to a scripture is not found in the Bible, skip it and continue with the next reference.
-
-  f) If the reference appears more than once in the document, include it multiple times in the output.
-
-  g) Format the scripture reference according to the specified format
+  f) Format the scripture reference according to the specified format
 
     ```
     Bm[n]=[B]:[NL]:[C]:[V]
@@ -157,3 +148,29 @@ DHH:23:55:10
 - Show the formatted scripture references, one per line.
 - Do not read any other files or directories, only the notes_file provided.
 </Constraints>
+
+
+```
+
+### Evaluation
+
+```text
+Results:
+  ✓ 2 passed (66.67%)
+  ✗ 1 failed (33.33%)
+  0 errors (0%)
+Duration: 0s (concurrency: 4)
+```
+
+./Sermons/MARCOS-4.txt                                                 │ [FAIL] Expected output to contain "DHH:23:55:10"   
+
+```
+Line 52: Is. 55.9 Así como los cielos son más altos que la tierra, mis caminos son más altos que los suyos, y mis pensamientos más altos.
+Line 53: 10Es como la lluvia y la nieve que caen del cielo. No vuelven allí hasta que han regado la tierra, haciendo que las plantas crezcan y florezcan, proporcionando semillas para el sembrador y alimentos para comer. 11De la misma manera, las palabras que digo no vuelven a mí sin cumplirse, sino que logran lo que yo quiero: alcanzan con éxito mi propósito. DHH
+```
+
+
+
+
+## iteration 2
+

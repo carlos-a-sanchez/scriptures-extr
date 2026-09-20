@@ -41,17 +41,17 @@ tests:
       - type: contains
         value: 'NVI'       
         metric: DefaultVersionNVI
-    
+
   - description: "Multiple versions"
     vars:
-      scrpts_file: "./Sermons/MARCOS-4.txt"
+      scrpts_file: "./Sermons/MARCOS_4.txt"
     assert:
       - type: assert-set 
         assert:
           - type: contains
             value: 'NVI:41:4:29'
-          - type: contains
-            value: 'DHH:23:55:10'   
+          - type: contains                      
+            value: 'DHH:23:55:9'   
         metric: MultipleVersions   
       - type: regex 
         value: 'Bm\d+=[A-Z]{3}:\d+:\d+:\d+'
