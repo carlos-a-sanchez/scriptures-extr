@@ -24,32 +24,7 @@ Read the sermon notes file (notes_file parameter), extract the scripture referen
 1. Validate the notes_file file exists and is a valid text document (.txt)
 2. Read the file notes_file, line by line. Each line could be a separate scripture reference (). DO NOT create any temporary file to read the content of notes_file; read it directly.
 
-  a) Look for scripture references in each line. The document is in Spanish and may contain references with colons or dots as separators like "Lc 15:11" or "Juan 3.16". The name of th books could be abbreviated or full, like "Lc" or "Lucas".
-
-  b) In case the reference to a scripture is a range, like "Lucas 15:11-13", include multiple lines in the output file, one for each verse in the range. Include the start and end verses, "Lucas 15:11-13" most produce a row for "Lucas 15:13".
-
-  c) When a line starts with or contains standalone verse numbers without a book and chapter, inherit the book and chapter from the most recent explicit reference. For example:
-  
-  ```text
- Is. 55.9 Así como los cielos son más altos. 10Es como la lluvia y la nieve que caen del cielo.  DHH
-  ```
-Should produce:
-
-```
-DHH:23:55:9
-DHH:23:55:10
-```
-
-`DHH:23:55:10` is produced because after the period, the next sentece started with "10" which is a verse number, then it inherits the book and chapter and version from the previous reference.
-
-
-  d) In case the reference to a scripture is a double range, like "Lucas 15:11-13, 15-16", include also the range after the ",". The reference "Lucas 15:11-13, 15-16" should be treated as 2 ranges: "Lucas 15:11-13" and "Lucas 15:15-16".
-
-  e) If the reference to a scripture is not found in the Bible, skip it and continue with the next reference.
-
-  f) If the reference appears more than once in the document, include it multiple times in the output.
-
-  g) Format the scripture reference according to the specified format
+  a) Format the scripture reference according to the specified format
 
     ```
     Bm[n]=[B]:[NL]:[C]:[V]
@@ -153,7 +128,4 @@ DHH:23:55:10
 </Context>
 
 <Constraints>
-- Do not creaet any temporary file to pass the content of the notes_file.
-- Show the formatted scripture references, one per line.
-- Do not read any other files or directories, only the notes_file provided.
 </Constraints>
