@@ -227,11 +227,27 @@ Results:
 Duration: 0s (concurrency: 4)
 ```
 
+#### Baseline scores
+
+| Metric              | Score |
+|---------------------|-------|
+| Basic Extraction    | 100%  |
+| Default version     | 100%  |
+| Expected format     | 100%  |
+| Multiple versions   | 100%  |
+| Range Extraction    | 100%  |
+
+
+
+
 ## Iteration 2
 
 ### Prompt
 
-Remove some wording from context section
+Since the prompt already works well, I will look for the minimal version of it that still work well.
+
+So, this iteration I will remove some wording from the context section.
+
 
 ```markdown
 # Scripture Extractor
@@ -437,10 +453,29 @@ Duration: 0s (concurrency: 4)
 
 ```
 
+
+
+#### Baseline scores
+
+| Metric              | Score | Baseline Rate |
+|---------------------|-------|---------------|
+| Basic Extraction    | 100%  | 100%          |
+| Default version     | 100%  | 100%          |
+| Expected format     | 100%  | 100%          |
+| Multiple versions   | 100%  | 100%          |
+| Range Extraction    | 100%  | 100%          |
+
+
+#### Conclusion of this iteration
+
+- Because scores remain at 100% across all metrics, the prompt is both deterministic and performing as expected.
+
+
 ## Iteration 3
 
 ### Prompt
-Removing constraints
+
+So, in this iteration I will remove the text from the contraints section and evaluate the prompt again.
 
 ```markdown
 
@@ -638,3 +673,17 @@ Results:
 Duration: 0s (concurrency: 4)
 
 ```
+#### Baseline scores
+
+| Metric              | Score | Baseline Rate |
+|---------------------|-------|---------------|
+| Basic Extraction    | 100%  | 100%          |
+| Default version     | 100%  | 100%          |
+| Expected format     | 100%  | 100%          |
+| Multiple versions   | 100%  | 100%          |
+| Range Extraction    | 100%  | 100%          |
+
+
+#### Conclusion of this iteration
+
+- Because scores remain at 100% across all metrics, the prompt is both deterministic and performing as expected. This shorten version is reliable enough to be used in production.
