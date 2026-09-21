@@ -123,8 +123,6 @@ Read the sermon notes file (notes_file parameter), extract the scripture referen
     Bm0=NTV:42:15:11
 
 4. Show the formatted scripture references to the user.
-
-
 </Context>
 
 <Constraints>
